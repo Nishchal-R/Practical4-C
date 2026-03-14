@@ -1,16 +1,10 @@
-/*CalculateMortgageA.c  
+/*CalculateMortgageB.c  
 Practical 4, Part 1(b) 
 @Nishchal Ranjitkar*/ 
 
 #include<stdio.h>
-
-double largerSalary(double salary1, double salary2) {  
-    return 1; 
-}
-
-double smallerSalary(double salary1, double salary2) {        
-    return 1; 
-}
+double largerSalary(double salary1, double salary2);
+double smallerSalary(double salary1, double salary2);
 
 int main(){
     double salary1, salary2, mortgage; 
@@ -25,3 +19,13 @@ int main(){
 
     return 0;
 }
+
+
+double largerSalary(double salary1, double salary2) {  
+    return 1; 
+}
+
+double smallerSalary(double salary1, double salary2) {        
+    return 1; 
+}//The funtions return the value one and not have any logical solutions
+
