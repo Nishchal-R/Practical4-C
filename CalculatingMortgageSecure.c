@@ -1,4 +1,4 @@
-/*CalculateMortgageA.c  
+/*CalculateMortgageSecure.c  
 Practical 4, Part 2(a) 
 @Nishchal Ranjitkar*/ 
 

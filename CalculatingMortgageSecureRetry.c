@@ -1,5 +1,5 @@
-/*CalculateMortgageA.c  
-Practical 4, Part 2(a) 
+/*CalculateMortgageSecureRetry.c  
+Practical 4, Part 2(b) 
 @Nishchal Ranjitkar*/ 
 
 #include<stdio.h>
@@ -14,22 +14,39 @@ double calculateMortgage(double salary1, double salary2);
 
 int main(){
     double salary1, salary2, mortgage; 
+    const int MAX_ATTEMPTS=3;
+    int attempts=0;
+    bool inputValid=false;
 
-    printf("Enter two salaries separated by a space: \n");       
-    if(!readSalaries(&salary1, &salary2)){
-        printf("Error: Invalid input. Program terminated.\n");
-        return 1;
-    }    
+    while(attempts<MAX_ATTEMPTS&&!inputValid){
+    printf("Enter two salaries separated by a space:\n");
+        
+        if(!readSalaries(&salary1, &salary2)){
+            attempts++;
+            printf("Error: Invalid input format.\n");
+            printf("Attempts remaining: %d\n", MAX_ATTEMPTS-attempts);
+            continue;
+        }
+        
+        if(!validateSalary(salary1)||!validateSalary(salary2)){
+            attempts++;
+            printf("Error: Salaries must be between £0 and £1,000,000.\n");
+            printf("Attempts remaining: %d\n", MAX_ATTEMPTS-attempts);
+            continue;
+        }
+        
+        inputValid=true;
+    }
     
-    if(!validateSalary(salary1)||!validateSalary(salary2)){
-        printf("Error: Salaries must be positive and within valid range(0-1,000,000).\n");
+    if(attempts>=MAX_ATTEMPTS){
+        printf("Maximum attempts exceeded. Program terminated.\n");
         return 1;
     }
     
     mortgage=calculateMortgage(salary1, salary2);
     
     if(mortgage<0){
-        printf("Error: Mortgage calculation failed(Potential Overflow).\n");
+        printf("Error: Calculation failed due to overflow.\n");
         return 1;
     }
     
